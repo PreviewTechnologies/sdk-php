@@ -1,0 +1,26 @@
+{
+    "name": "previewtechs/sdk-php",
+    "description": "Official PHP SDK for Preview Technologies",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Preview Technologies",
+            "email": "info@previewtechs.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "config": {
+        "platform": {
+            "php": "5.5.9"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Previewtechs\\SDK\\PHP\\": "src"
+        }
+    }
+}
