@@ -15,17 +15,42 @@
  * limitations under the License.
  */
 
-namespace Previewtechs\SDK\PHP;
+namespace Previewtechs\SDK;
 
+use Previewtechs\SDK\Services\Mail;
 
+/**
+ * Class Client
+ * @package Previewtechs\SDK\PHP
+ */
 class Client
 {
+    /**
+     *
+     */
     const MAIL_SERVICES_ENDPOINT = "https://mail-services.previewtechsapis.com";
+    /**
+     *
+     */
     const ACCOUNTS_SERVICES_ENDPOINT = "https://accounts-services.previewtechsapis.com";
+    /**
+     *
+     */
     const BILLING_SERVICES_ENDPOINT = "https://billing-services.previewtechsapis.com";
 
+    /**
+     * @var array
+     */
     protected $options = [];
+    /**
+     * @var array
+     */
+    protected $credentials = [];
 
+    /**
+     * Client constructor.
+     * @param array $options
+     */
     public function __construct($options = [])
     {
         $this->options = $options;
@@ -52,5 +77,13 @@ class Client
     public function setOptions($key, $value)
     {
         $this->options[$key] = $value;
+    }
+
+    /**
+     * @return Mail
+     */
+    public function getMailServices()
+    {
+        return new Mail($this);
     }
 }

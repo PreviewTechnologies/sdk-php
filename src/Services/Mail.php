@@ -15,14 +15,15 @@
  * limitations under the License.
  */
 
-namespace Previewtechs\SDK\PHP\Services;
+namespace Previewtechs\SDK\Services;
 
 
-use Previewtechs\SDK\PHP\Client;
+use Previewtechs\SDK\Client;
+use Previewtechs\SDK\Http\Agent;
 
 /**
  * Class Mail
- * @package Previewtechs\SDK\PHP\Services
+ * @package Previewtechs\SDK\Services
  */
 class Mail
 {
@@ -37,10 +38,11 @@ class Mail
      */
     public function __construct(Client $client)
     {
-        if (!$client) {
-            throw new \InvalidArgumentException("Previewtechs SDK Client must required");
-        }
-
         $this->client = $client;
+    }
+
+    public function send()
+    {
+        return new Agent($this->client);
     }
 }
