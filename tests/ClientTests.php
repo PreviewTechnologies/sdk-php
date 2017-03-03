@@ -48,12 +48,24 @@ class ClientTests extends \PHPUnit_Framework_TestCase
     /**
      *
      */
+    public function testSetOptions()
+    {
+        $client = new Client();
+        $client->setOptions(['key' => 'value']);
+        $this->assertEquals('value', $client->getOptions("key"));
+    }
     public function testAddOptionSets()
     {
         $client = new Client();
-        $client->setOptions("key", 'value');
-        $client->setOptions("anotherKey", "anotherValue");
-
+        $client->addOptions('key', 'value');
         $this->assertEquals('value', $client->getOptions("key"));
+    }
+
+    public function testHttpClientAttachment()
+    {
+        $client = new Client();
+        $client->setHttp(new \GuzzleHttp\Client());
+
+        $this->assertTrue($client->getHttp() instanceof \GuzzleHttp\Client);
     }
 }

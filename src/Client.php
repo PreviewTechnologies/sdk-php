@@ -17,35 +17,29 @@
 
 namespace Previewtechs\SDK;
 
-use Previewtechs\SDK\Services\Mail;
+use GuzzleHttp\ClientInterface;
+use Previewtechs\SDK\Entities\OptionsEntity;
+use Previewtechs\SDK\Services\MailServices\Mailer;
 
 /**
  * Class Client
- * @package Previewtechs\SDK\PHP
+ * @package Previewtechs\SDK
  */
 class Client
 {
     /**
-     *
+     * @var \GuzzleHttp\Client
      */
-    const MAIL_SERVICES_ENDPOINT = "https://mail-services.previewtechsapis.com";
+    protected $http;
     /**
-     *
+     * @var \JsonMapper
      */
-    const ACCOUNTS_SERVICES_ENDPOINT = "https://accounts-services.previewtechsapis.com";
-    /**
-     *
-     */
-    const BILLING_SERVICES_ENDPOINT = "https://billing-services.previewtechsapis.com";
+    protected $jsonMapper;
 
     /**
-     * @var array
+     * @var OptionsEntity
      */
-    protected $options = [];
-    /**
-     * @var array
-     */
-    protected $credentials = [];
+    use OptionsEntity;
 
     /**
      * Client constructor.
@@ -54,36 +48,49 @@ class Client
     public function __construct($options = [])
     {
         $this->options = $options;
+
+        $httpConfig = array_key_exists('httpConfig', $this->options) ? $this->options['httpConfig'] : [];
+        $this->http = new \GuzzleHttp\Client($httpConfig);
+        $this->jsonMapper = new \JsonMapper();
     }
 
     /**
-     * @param null $key
-     * @return array|mixed
+     * @return \GuzzleHttp\Client
      */
-    public function getOptions($key = null)
+    public function getHttp()
     {
-        if ($key) {
-            return $this->options[$key];
-        }
-
-        return $this->options;
+        return $this->http;
     }
 
     /**
-     * @param $key
-     * @param $value
-     * @internal param array $options
+     * @param ClientInterface $http
      */
-    public function setOptions($key, $value)
+    public function setHttp(ClientInterface $http)
     {
-        $this->options[$key] = $value;
+        $this->http = $http;
     }
 
     /**
-     * @return Mail
+     * @return \JsonMapper
+     */
+    public function getJsonMapper()
+    {
+        return $this->jsonMapper;
+    }
+
+    /**
+     * @param \JsonMapper $jsonMapper
+     */
+    public function setJsonMapper($jsonMapper)
+    {
+        $this->jsonMapper = $jsonMapper;
+    }
+
+    /**
+     * @return Mailer
      */
     public function getMailServices()
     {
-        return new Mail($this);
+        return new Mailer($this);
     }
 }
