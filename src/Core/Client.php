@@ -28,6 +28,11 @@ use Previewtechs\SDK\Services\MailServices\Mailer;
 class Client
 {
     /**
+     * @var array
+     */
+    public $options = [];
+
+    /**
      * @var \GuzzleHttp\Client
      */
     protected $http;
@@ -35,11 +40,6 @@ class Client
      * @var \JsonMapper
      */
     protected $jsonMapper;
-
-    /**
-     * @var OptionsEntity
-     */
-    use OptionsEntity;
 
     /**
      * Client constructor.
@@ -52,6 +52,42 @@ class Client
         $httpConfig = array_key_exists('httpConfig', $this->options) ? $this->options['httpConfig'] : [];
         $this->http = new \GuzzleHttp\Client($httpConfig);
         $this->jsonMapper = new \JsonMapper();
+    }
+
+    /**
+     * @param null $key
+     * @return array
+     */
+    public function getOptions($key = null)
+    {
+        if (isset($key) && array_key_exists($key, $this->options)) {
+            return $this->options[$key];
+        }
+
+        return $this->options;
+    }
+
+    /**
+     * @param array $options
+     */
+    public function setOptions($options = [])
+    {
+        $this->options = $options;
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     */
+    public function addOptions($key, $value)
+    {
+        if (array_key_exists($key, $this->options)) {
+            throw new \InvalidArgumentException(
+                "Options with this " . $key . " already set. You can't add again what's already set"
+            );
+        }
+
+        $this->options[$key] = $value;
     }
 
     /**
