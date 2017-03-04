@@ -1,0 +1,25 @@
+{
+    "name": "previewtechs/mailservices-php",
+    "description": "Mail Services of Preview Technologies PHP library",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Preview Technologies",
+            "email": "info@previewtechs.com"
+        }
+    ],
+    "config": {
+        "platform": {
+            "php": "5.5.9"
+        }
+    },
+    "require": {
+        "previewtechs/sdk-core": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Previewtechs\\SDK\\Services\\MailServices\\": "."
+        }
+    }
+}
