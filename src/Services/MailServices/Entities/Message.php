@@ -2,7 +2,6 @@
 
 namespace Previewtechs\SDK\Services\MailServices\Entities;
 
-
 /**
  * Class Message
  * @package Previewtechs\SDK\Services\MailServices\Entities

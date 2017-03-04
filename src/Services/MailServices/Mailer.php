@@ -63,25 +63,29 @@ class Mailer
         $this->checkRequiredFields();
 
         try {
-            $response = $this->client->getHttp()->request('POST', self::MAIL_SERVICES_ENDPOINT . "/messages/sends", [
+            $response = $this->client->getHttp()->request('POST', self::MAIL_SERVICES_ENDPOINT . "/messages/send", [
                 'query' => ['api_key' => $this->client->getOptions('auth')['api_key']],
-                'json' => $this->getParamsAsArray()
+                'json' => $this->getParams()
             ]);
 
-            $response = ($response->getStatusCode() === 200) ? json_decode($response->getBody()->getContents()) : new \stdClass();
+            $response = ($response->getStatusCode() === 200) ?
+                json_decode($response->getBody()->getContents()) :
+                new \stdClass();
             $mapper = $this->client->getJsonMapper();
             $mapper->bExceptionOnUndefinedProperty = false;
-            return $mapper->map($response, new GeneralResponse());
+            return $this->response = $mapper->map($response, new GeneralResponse());
+            // @codeCoverageIgnoreStart
         } catch (ClientException $exception) {
-            return $this->client->getJsonMapper()
+            return $this->response = $this->client->getJsonMapper()
                 ->map(json_decode($exception->getResponse()->getBody()->getContents()), new GeneralResponse());
+            // @codeCoverageIgnoreEnd
         }
     }
 
     /**
      *
      */
-    public function checkRequiredFields()
+    private function checkRequiredFields()
     {
         if (!$this->getFrom()) {
             throw new \InvalidArgumentException("From must required");
@@ -107,7 +111,7 @@ class Mailer
     /**
      * @return array
      */
-    public function getParamsAsArray()
+    public function getParams()
     {
         $data = [];
         $data['from'] = $this->getFrom();

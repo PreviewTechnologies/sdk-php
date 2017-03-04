@@ -1,7 +1,6 @@
 <?php
 namespace Previewtechs\SDK\Entities;
 
-
 /**
  * Class OptionsEntity
  * @package Previewtechs\SDK\Entities
@@ -41,7 +40,9 @@ trait OptionsEntity
     public function addOptions($key, $value)
     {
         if (array_key_exists($key, $this->options)) {
-            throw new \InvalidArgumentException("Options with this " . $key . " already set. You can't add again what's already set");
+            throw new \InvalidArgumentException(
+                "Options with this " . $key . " already set. You can't add again what's already set"
+            );
         }
 
         $this->options[$key] = $value;

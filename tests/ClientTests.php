@@ -55,6 +55,17 @@ class ClientTests extends \PHPUnit_Framework_TestCase
         $client->setOptions(['key' => 'value']);
         $this->assertEquals('value', $client->getOptions("key"));
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetOptionsWithExistedKeyShouldReturnException()
+    {
+        $client = new Client();
+        $client->addOptions('key', 'value');
+        $client->addOptions('key', 'differentValue');
+        $this->assertEquals('value', $client->getOptions("key"));
+    }
     public function testAddOptionSets()
     {
         $client = new Client();

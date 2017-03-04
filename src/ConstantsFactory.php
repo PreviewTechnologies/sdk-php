@@ -8,7 +8,6 @@
 
 namespace Previewtechs\SDK;
 
-
 /**
  * Class ConstantsFactory
  * @package Previewtechs\SDK
