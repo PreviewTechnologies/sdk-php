@@ -33,10 +33,7 @@ class Mailer
      *
      */
     const MAIL_SERVICES_ENDPOINT = "https://mail-services.previewtechsapis.com/v1";
-    /**
-     * @var array
-     */
-    public $options = [];
+
     /**
      * @var Client
      */
@@ -63,42 +60,6 @@ class Mailer
         if (!array_key_exists('api_key', $this->client->getOptions('auth'))) {
             throw new \InvalidArgumentException("Authorization credentials required. api_key is required");
         }
-    }
-
-    /**
-     * @param null $key
-     * @return array
-     */
-    public function getOptions($key = null)
-    {
-        if (isset($key) && array_key_exists($key, $this->options)) {
-            return $this->options[$key];
-        }
-
-        return $this->options;
-    }
-
-    /**
-     * @param array $options
-     */
-    public function setOptions($options = [])
-    {
-        $this->options = $options;
-    }
-
-    /**
-     * @param $key
-     * @param $value
-     */
-    public function addOptions($key, $value)
-    {
-        if (array_key_exists($key, $this->options)) {
-            throw new \InvalidArgumentException(
-                "Options with this " . $key . " already set. You can't add again what's already set"
-            );
-        }
-
-        $this->options[$key] = $value;
     }
 
     /**

@@ -121,8 +121,8 @@ class MailerTests extends \PHPUnit_Framework_TestCase
                 'message' => 'Mail sent successfully',
                 'data' =>
                     array(
-                        'email_id' => '<mockmailid@mailsrv-a.previewtechs.com>',
-                        'result_text' => 'Queued. Thank you.',
+                        'messageId' => '<mockmailid@mailsrv-a.previewtechs.com>',
+                        'resultText' => 'Queued. Thank you.',
                     ),
             ))),
             new Response(200, [])
@@ -141,11 +141,11 @@ class MailerTests extends \PHPUnit_Framework_TestCase
         $response = $this->mailer->send();
         $this->assertTrue(is_object($response));
         $this->assertTrue($response instanceof GeneralResponse);
-
         $this->assertNotEmpty($response->getData()->getMessageId());
         $this->assertEquals("<mockmailid@mailsrv-a.previewtechs.com>", $response->getData()->getMessageId());
         $this->assertEquals(true, $response->isSuccess());
         $this->assertEquals("Mail sent successfully", $response->getMessage());
+        $this->assertEquals("Queued. Thank you.", $response->getData()->getResultText());
 
         $this->assertTrue($this->mailer->getResponse() instanceof GeneralResponse);
     }

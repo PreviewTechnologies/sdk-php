@@ -26,13 +26,26 @@ class Message
     /**
      * @var string
      */
-    public $email_id = null;
+    public $messageId = null;
 
     /**
-     * @return mixed
+     * @var string
+     */
+    public $resultText;
+
+    /**
+     * @return string
      */
     public function getMessageId()
     {
-        return $this->email_id;
+        return $this->messageId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResultText()
+    {
+        return $this->resultText;
     }
 }
