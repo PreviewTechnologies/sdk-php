@@ -11,6 +11,7 @@ namespace Previewtechs\SDK\Tests;
 
 use Previewtechs\SDK\Client;
 use Previewtechs\SDK\Services\Mail;
+use Previewtechs\SDK\Services\MailServices\Mailer;
 
 /**
  * Class ClientTests
@@ -39,10 +40,10 @@ class ClientTests extends \PHPUnit_Framework_TestCase
      */
     public function testInstantiateClient()
     {
-        $client = new Client();
+        $client = new Client(['auth' => ['api_key' => 'api_key_value']]);
         $this->assertTrue($client instanceof Client);
-        $this->assertEmpty($client->getOptions());
-        $this->assertTrue($client->getMailServices() instanceof Mail);
+        $this->assertNotEmpty($client->getOptions());
+        $this->assertTrue($client->getMailServices() instanceof Mailer);
     }
 
     /**
@@ -67,5 +68,14 @@ class ClientTests extends \PHPUnit_Framework_TestCase
         $client->setHttp(new \GuzzleHttp\Client());
 
         $this->assertTrue($client->getHttp() instanceof \GuzzleHttp\Client);
+    }
+
+    public function testJsonMapperDependency()
+    {
+        $client = new Client();
+        $this->assertTrue($client->getJsonMapper() instanceof \JsonMapper);
+
+        $client->setJsonMapper(new \JsonMapper());
+        $this->assertTrue($client->getJsonMapper() instanceof \JsonMapper);
     }
 }
