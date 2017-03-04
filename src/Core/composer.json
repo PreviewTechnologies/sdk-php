@@ -1,5 +1,5 @@
 {
-    "name": "previewtechs/mailservices-php",
+    "name": "previewtechs/sdk-core-php",
     "description": "Mail Services of Preview Technologies PHP library",
     "type": "library",
     "license": "MIT",
@@ -15,11 +15,12 @@
         }
     },
     "require": {
-        "previewtechs/sdk-core-php": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "netresearch/jsonmapper": "^1.1"
     },
     "autoload": {
         "psr-4": {
-            "Previewtechs\\SDK\\Services\\MailServices\\": "."
+            "Previewtechs\\SDK\\Core\\": "."
         }
     }
 }
