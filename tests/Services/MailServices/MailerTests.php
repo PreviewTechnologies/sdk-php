@@ -5,7 +5,7 @@ namespace Previewtechs\SDK\Tests\Services\MailServices;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Previewtechs\SDK\Client;
+use Previewtechs\SDK\Core\Client;
 use Previewtechs\SDK\Services\MailServices\Mailer;
 use Previewtechs\SDK\Services\MailServices\Response\GeneralResponse;
 

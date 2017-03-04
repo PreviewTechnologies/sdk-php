@@ -6,16 +6,14 @@
  * @url https://www.previewtechs.com
  */
 
-namespace Previewtechs\SDK\Tests;
+namespace Previewtechs\SDK\Tests\Core;
 
-
-use Previewtechs\SDK\Client;
-use Previewtechs\SDK\Services\Mail;
+use Previewtechs\SDK\Core\Client;
 use Previewtechs\SDK\Services\MailServices\Mailer;
 
 /**
  * Class ClientTests
- * @package Previewtechs\SDK\Tests
+ * @package Previewtechs\SDK\Tests\Core
  */
 class ClientTests extends \PHPUnit_Framework_TestCase
 {

@@ -18,7 +18,7 @@
 namespace Previewtechs\SDK\Services\MailServices;
 
 use GuzzleHttp\Exception\ClientException;
-use Previewtechs\SDK\Client;
+use Previewtechs\SDK\Core\Client;
 use Previewtechs\SDK\Entities\OptionsEntity;
 use Previewtechs\SDK\Services\MailServices\Entities\MailEntity;
 use Previewtechs\SDK\Services\MailServices\Response\GeneralResponse;

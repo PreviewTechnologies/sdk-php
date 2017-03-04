@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Previewtechs\SDK;
+namespace Previewtechs\SDK\Core;
 
 use GuzzleHttp\ClientInterface;
 use Previewtechs\SDK\Entities\OptionsEntity;
@@ -23,7 +23,7 @@ use Previewtechs\SDK\Services\MailServices\Mailer;
 
 /**
  * Class Client
- * @package Previewtechs\SDK
+ * @package Previewtechs\SDK\Core
  */
 class Client
 {
