@@ -15,7 +15,7 @@
         }
     },
     "require": {
-        "previewtechs/sdk-core-php": "^1.0"
+        "previewtechs/sdk-core-php": "^1.1"
     },
     "autoload": {
         "psr-4": {
